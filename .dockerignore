@@ -1,0 +1,8 @@
+**/node_modules
+.git
+.local
+.conversation
+.agents
+attached_assets
+artifacts/api-server
+artifacts/mockup-sandbox

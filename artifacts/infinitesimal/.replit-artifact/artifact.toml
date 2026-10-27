@@ -1,0 +1,35 @@
+kind = "web"
+previewPath = "/"
+title = "Infinitesimal"
+description = "A local-first study browser with real tabbed web browsing, focus controls, notes, tasks, a personal home dashboard, and configurable search tools."
+version = "1.0.0"
+id = "artifacts/infinitesimal"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19061
+
+[services.development]
+run = "pnpm --filter @workspace/infinitesimal run dev"
+
+[services.production.build]
+args = ["pnpm", "--filter", "@workspace/infinitesimal", "run", "check"]
+
+[services.production.build.env]
+NODE_ENV = "production"
+
+[services.production.run]
+args = ["node", "--enable-source-maps", "artifacts/infinitesimal/server/index.mjs"]
+
+[services.production.run.env]
+PORT = "19061"
+NODE_ENV = "production"
+
+[services.production.health.startup]
+path = "/healthz"
+
+[services.env]
+PORT = "19061"
+BASE_PATH = "/"

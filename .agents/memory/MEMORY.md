@@ -1,0 +1,7 @@
+- [Proxy page isolation](proxy-page-isolation.md) — the shared-origin proxy is not a security boundary; preserve the warning until isolation is verified.
+- [Wisp stream limits](wisp-stream-limits.md) — Wisp 0.4.1's per-host limiter crashes because its stream collection is an object, not an iterable.
+- [Scramjet V1 startup](scramjet-v1-startup.md) — initialize the schema first and reload config through the V1 worker API so URL rewriting has its module config.
+- [Replit preview wrapper](replit-preview-wrapper.md) — resolve standalone links from the wrapper’s `initialPath`, not its internal iframe URL.
+- [Proxy browser tests](proxy-browser-tests.md) — navigate proxied pages through the app UI and inspect the same-origin iframe instead of CDP top-level navigation.
+- [Proxy frame compatibility](proxy-frame-compatibility.md) — allow common browser features without enabling top-level navigation; use a normal origin-level referrer policy.
+- [Calendar recurrence import](calendar-recurrence-import.md) — expand bounded common RRULE patterns; preserve unsupported patterns as one-time events with a user-visible warning.

@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: infinitesimal
+    runtime: node
+    buildCommand: corepack enable && pnpm install --filter @workspace/infinitesimal --frozen-lockfile && pnpm --filter @workspace/infinitesimal run check
+    startCommand: node artifacts/infinitesimal/server/index.mjs
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production

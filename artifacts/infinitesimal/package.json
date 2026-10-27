@@ -1,0 +1,29 @@
+{
+  "name": "@workspace/infinitesimal",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server/index.mjs",
+    "start": "node server/index.mjs",
+    "check": "node server/check.mjs",
+    "build": "node server/check.mjs",
+    "typecheck": "node server/check.mjs",
+    "test": "node server/smoke-test.mjs && node server/recurrence-test.mjs",
+    "test:browser": "PROXY_ENGINE=uv node server/browser-test.mjs; uv_status=$?; PROXY_ENGINE=scramjet node server/browser-test.mjs; scramjet_status=$?; test \"$uv_status\" -eq 0 -a \"$scramjet_status\" -eq 0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@mercuryworkshop/bare-mux": "2.1.9",
+    "@mercuryworkshop/epoxy-transport": "2.1.28",
+    "@mercuryworkshop/libcurl-transport": "1.5.2",
+    "@mercuryworkshop/scramjet": "https://github.com/MercuryWorkshop/scramjet/releases/download/v1.1.0/mercuryworkshop-scramjet-1.1.0.tgz",
+    "@mercuryworkshop/wisp-js": "0.4.1",
+    "@titaniumnetwork-dev/ultraviolet": "3.2.10",
+    "express": "5.2.1",
+    "ws": "8.19.0"
+  }
+}

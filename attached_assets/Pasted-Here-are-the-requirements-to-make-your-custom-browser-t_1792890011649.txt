@@ -1,0 +1,28 @@
+Here are the requirements to make your custom browser trusted by Google:
+
+1. Identify with a Valid User-Agent String
+
+Google uses the User-Agent header to identify the browser. If your string is empty, generic, or mentions disallowed frameworks, Google will block it with a "403 Disallowed_Useragent" error.
+• Format: Your browser's User-Agent must closely mimic a standard browser (like Chrome or Safari).
+• Avoid blocked keywords: Do not include terms like WebView, Embed, or framework-specific names (like Electron or Qt) in the main user-agent string if they are known to trigger automated blocks.
+
+2. Implement a Secure Rendering Engine
+
+Google requires the browser to support modern web standards and isolation protocols.
+• Use an approved engine: Build your browser on top of a trusted, up-to-date engine like Chromium (Blink) or Firefox (Gecko/GeckoView).
+• Avoid raw WebViews: Standard mobile webviews (like Android WebView or iOS UIWebView) are completely blocked from Google OAuth sign-ins due to vulnerability to "man-in-the-middle" (MITM) attacks.
+
+3. Handle Cookies and Javascript Perfectly
+
+• Enable Full JavaScript: Google’s login page uses complex fingerprinting scripts to detect automated bots. Your engine must execute JavaScript exactly like Chrome or Firefox does.
+• Support Cookies and Partitioning: The browser must properly store, send, and partition cookies (SameSite attributes) and support storage mechanisms like localStorage and IndexedDB.
+
+4. Support Secure Connections (TLS/HTTPS)
+
+• Modern Cipher Suites: Your browser must use secure, modern TLS configurations (TLS 1.2 or TLS 1.3).
+• No Certificate Tampering: If your custom browser intercepts or modifies SSL/TLS certificates, Google's strict HTTP Strict Transport Security (HSTS) and certificate pinning will immediately block the connection.
+
+5. Pass Bot Detection Checks (WebDriver / Automation Flags)
+
+Google checks if the browser is an automated script (like Selenium or Puppeteer).
+• Ensure standard automation flags (like window.navigator.webdriver) are false or not present during the login flow, as Google automatically blocks automated browsers from logging into personal accounts.
